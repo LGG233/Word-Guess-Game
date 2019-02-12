@@ -1,0 +1,65 @@
+/* CSS for Word Guess Game*/
+
+ body {
+        background-image: url("../images/oscars.jpg");
+        background-repeat: repeat;
+ }
+
+#title {
+    font-family: 'Trade Winds', cursive;
+    font-size: 72px;
+    color: white;
+    font: outline;
+    text-align: center;
+    margin: 45px;
+    float: center;
+    padding: 20px;
+    background: gold;
+      
+}
+
+#game-head {
+    margin-top: 15px;0
+}
+
+.container1 {
+    background: whitesmoke;
+    margin: 20px auto;
+    width: 960px;
+    padding: 0 20px 20px 30px;
+    color: #777777;
+    border: 1px solid #d4d4d4;
+    overflow: auto;
+    }
+
+#gameBoard {
+    font-family: 'Diplomata', cursive;
+    margin-left: 20px;
+}
+
+#oscar-pic {
+    float: left;
+    width: 200px;
+    padding-right: 20px;
+}
+
+#gameBoard {
+    text-align: center;
+    font-size: 48px;
+}
+
+#buttons {
+    margin-top: 250px;
+    padding-left: 300px;
+    float: center;
+
+}
+
+#bad-letters {
+    font-size: 24px;
+    font-family: 'Diplomata', cursive;
+}
+
+/* Google Fonts
+font-family: 'Diplomata', cursive;
+font-family: 'Trade Winds', cursive; */
