@@ -8,7 +8,7 @@ $(document).ready(function () {
     var usedLetters = []; // Array to capture incorrect letters played by player
     var maxTries = 15; // set at 15 guesses per game -- figure out how player can choose this number?
     var wrongGuesses = 0; // Tracks number of wrong guesses; will be updated dynamically
-    var userTries = 0; // trac
+    var userTries = 0; // Tracks number of guesses
     var userWins = 0; // Tracks number of player wins
     var userLoss = 0; // Tracks number of player losses
     var randomName = ""; // Oscar winner randomly chosen from gameNames array
@@ -16,7 +16,7 @@ $(document).ready(function () {
     var letterArray = [] // creates array for holding gameBoard 
     var gameBoardCharacter = ""; // variable to hold disguised letter for gameBoard (as "_")
 
-    document.getElementById('maxTries').innerHTML = maxTries;
+    document.getElementById('maxTries').innerHTML = maxTries; // Tells player number of guesses they have
 
     var arrayPosition = Math.floor((Math.random() * 30) - 1); // on game start, will select random Oscar winner from gameNames array
     var randomName = gameNames[arrayPosition]; // on game start, will select random Oscar winner from gameNames array
@@ -37,7 +37,7 @@ $(document).ready(function () {
     console.log(letterArray);
 
 
-    document.onkeyup = function (playGame) { // gets letter from player, stores wrong guesses, rewrites gameBoard to include correct guesses
+    document.onkeyup = function () { // gets letter from player, stores wrong guesses, rewrites gameBoard to include correct guesses
         if (event.keyCode >= 65 && event.keyCode <= 90) { // Captures letter clicked by player and checks to confirm an actual letter, not another key
             var userGuess = event.key
         } else document.getElementById("game-head").innerHTML = "Pick a letter between A and Z"; // tells player to pick a letter if the click different key
@@ -54,13 +54,12 @@ $(document).ready(function () {
             for (var w = 0; w < nameArray.length; w++) {
                 if (nameArray[w] === userGuess) {
                     letterArray[w] = userGuess;
-                    console.log(letterArray);
-                    document.getElementById("gameBoard").innerText = ""; 
-                    letterArray.forEach(x => document.getElementById("gameBoard").append(x)); 
+                    document.getElementById("gameBoard").innerText = "";
+                    letterArray.forEach(x => document.getElementById("gameBoard").append(x));
                 }
             }
         }
-        // This works except maxTries resets to 0 after first letter is picked
+
         else if (event.keyCode >= 65 && event.keyCode <= 90) {
             usedLetters.push(userGuess); // pushes userGuess to the usedLetters array
             document.getElementById("used-letters").append(userGuess + " "); // writes the userGuess to the "used-letters" div 
@@ -69,17 +68,30 @@ $(document).ready(function () {
             document.getElementById('maxTries').innerHTML = maxTries;
             document.getElementById("userTries").innerHTML = wrongGuesses;
         }
+        if (randomName === (document.getElementById("gameBoard").innerText)) {
+            document.getElementById("remaining").innerHTML = ("Nice job - you win!");
+            userWins++
+            document.getElementById("gamesWon").innerHTML = (userWins);
+        }
+                
+        // else if usedLetters.push(guessedLetter); {// pushes userGuess to the usedLetters array
+        //     document.getElementById("used-letters").append(userGuess + " "); // writes the userGuess to the "used-letters" div 
+        //     document.getElementById('maxTries').innerHTML = maxTries;
+        //     document.getElementById("userTries").innerHTML = wrongGuesses;
+        //     wrongGuesses = wrongGuesses++;
+        // }
     }
-    // THIS DOES NOT WORK
-    // if (maxTries <= 0) {
-    //     document.getElementById("remaining").innerHTNL = ("Good try but you didn't get it. The name is: ") + randomName;
-    //     userLoss++
-    // }
-    // if (document.getElementById("gameBoard").innerText = randomName) {
-    //     document.getElementById("remaining").innerHTNL = ("Nice job - you win!");
-    //     userWins++
-    // }
 });
+    // if (event.keyCode >= 65 && event.keyCode <= 90) { // checks if letter already chosen and adds new bad letters to usedLetters array
+    // for (var a = 0; a < usedLetters.length; a++) {
+    //     console.log(usedLetters)
+    // })
+// if (maxTries <= 0) {
+//     document.getElementById("remaining").innerHTML = ("Good try but you didn't get it. The name is: ") + randomName;
+//     userLoss++
+// }
+
+// });
 
 // INSERT BUTTONS FOR PLAYER TO PICK LEVEL OF DIFFICULTY // DOES NOT WORK
     // $("#btnEasy").on("click", function () {
