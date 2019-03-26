@@ -9,10 +9,9 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Diplomata|Trade+Winds" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="./assets/javascript/game.js"></script>
-
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 </head>
 
@@ -21,24 +20,22 @@
         <div id="title">Welcome to Oscar's Hangman!</div>
     </header>
     <div class="container1">
-        <h4 id="game-head">Guess Best Actress or Best Actor winners from the first 91 years of Academy Awards. Press any letter to start:</h4>
+        <h4 id="game-head">Guess Best Actress or Best Actor winners from the first nine decades of Academy Awards. Press
+            any
+            letter to start:</h4>
         <img id="oscar-pic" src="assets/images/oscar1.jpg" alt="Oscar Statue">
         <div id="gameBoard"></div>
         <div id="letter-status"></div><br>
-        <p id="bad-letters">Used Letters: <span id="used-letters"></span></p>
-        <!-- <div id="buttons">
-            <button class="button" ID="btnEasy" type="button">Easy</button>
-            <button class="button" ID="btnMed" type="button">Medium</button>
-            <button class="button" ID="btnHard" type="button">Hard</button>
-            <button class="button" ID="btnExpert" type="button">Expert</button>
-        </div> -->
-        <br>
-        <!-- Level selected: <span id="userLevelSelect"></span>.  -->
-    <p id="remaining">You have used <span id="userTries"></span> guesses of <span id="maxTries"></span> tries.
-        </p>
+        <p id="bad-letters">Used Letters: <span id="used-letters"></span></p><br><br><br><br>
+        <p id="remaining">You have used 0 guesses of 15 tries.</p>
         <p id="wins">Wins: <span id="gamesWon"></span></p>
         <p id="loss">Losses: <span id="gamesLost"></span></p>
+        <div id=buttons> <button class="button" id="new-game-btn" type="button">New Game</button></div>
     </div>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="./assets/javascript/game.js"></script>
+    <!-- <script scr="/assets/javascript/game6.js"></script> -->
+    <!-- <script src="assets/javascript/hangman.js"></script> -->
 </body>
 
 </html>

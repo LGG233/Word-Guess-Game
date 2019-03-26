@@ -3,7 +3,12 @@
  body {
         background-image: url("../images/oscars.jpg");
         background-repeat: repeat;
+        background-blend-mode: luminosity;
  }
+
+.white {
+    color: white;
+}
 
 #title {
     font-family: 'Trade Winds', cursive;
@@ -16,6 +21,13 @@
     padding: 20px;
     background: #c32a2a;
       
+}
+
+#clearGame {
+    text-align: center;
+    padding: 10px;
+    width: 100px; 
+    margin-left: 250px;
 }
 
 #game-head {
@@ -33,8 +45,11 @@
     }
 
 #gameBoard {
-    font-family: 'Diplomata', cursive;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 10px;
     margin-left: 20px;
+    font-size: 14px;
+
 }
 
 #oscar-pic {
@@ -52,12 +67,37 @@
     margin-top: 250px;
     padding-left: 300px;
     float: center;
-
 }
 
 #bad-letters {
-    font-size: 24px;
-    font-family: 'Diplomata', cursive;
+    font-size: 48px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#new-game-btn {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    display: block;
+    background-color: c32a2a;
+    font-size: 18px;
+    font-weight: bold;
+    color: #c32a2a;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 0 6px #5f5f5e;
+}
+
+#new-game-btn:hover {
+    box-shadow: 0 4px #5f5f5e;
+    top: 2 px;
+}
+
+#new-game-btn:active {
+    box-shadow: 0 0 0 0 #5f5f5e;
+    top: 6px;
 }
 
 /* Google Fonts
