@@ -5,14 +5,17 @@ var gameNames = ["lionel barrymore", "clark gable", "burt lancaster", "spencer t
 var userTries = 0; // Tracks number of guesses
 var randomName = ""; // Oscar winner randomly chosen from gameNames array
 var nameArray = []; // individual letters of randomly chosen Oscar winner
-var spacesArray = []; // array for holding "_" and " " of name to guess
+var spacesArray = [];
 var usedLetters = []; // Array to capture incorrect letters played by player
 var userWins = 0; // Tracks number of player wins
 var userLoss = 0; // Tracks number of player losses
 var userChoice = ""; // placeholder variable for guessed letter
-var letterPicked = "false"; // "false" prevents name from being put into used letter pile
+var letterPicked = "false";
 document.getElementById("gamesWon").innerHTML = "0";
 document.getElementById("gamesLost").innerHTML = "0";
+randomName = gameNames[Math.floor((Math.random() * gameNames.length) - 1)];
+randomName = randomName.toUpperCase()
+nameArray = randomName.split("");
 
 $(document).ready(function () {
     $("#new-game-btn").hide();
@@ -37,13 +40,15 @@ function gameSetup() {
 
 function resetGame() {
     $(".button").on("click", function () {
-        userTries = 0; 
-        randomName = ""; 
-        nameArray = []; 
+        console.log("new game button clicked");
+        userTries = 0; // Tracks number of guesses
+        randomName = ""; // Oscar winner randomly chosen from gameNames array
+        nameArray = []; // individual letters of randomly chosen Oscar winner
         spacesArray = [];
-        usedLetters = []; 
+        usedLetters = []; // Array to capture incorrect letters played by player
         document.getElementById("gameBoard").innerText = "";
         document.getElementById("used-letters").innerText = "";
+        // document.getElementById("user-tries").innerText = "You have used " + userTries + " of 15 attempts";
         $("#new-game-btn").hide();
         gameSetup();
     })
@@ -65,6 +70,8 @@ function chooseLetter() {
                 }
             }
             usedLetters.push(userChoice);
+            console.log(userChoice);
+            console.log("This is the used letters pile: " + usedLetters)
             if (randomName.includes(userChoice)) {
                 for (m = 0; m < randomName.length; m++) {
                     if (userChoice === nameArray[m]) {
@@ -78,30 +85,40 @@ function chooseLetter() {
                 if (letterPicked === "false") {
                     document.getElementById("used-letters").append(userChoice.toUpperCase() + " ");
                 }
+                // console.log("this is the updated used letters pile: " + usedLetters)
             }
             evaluateScore();
         } else {
             alert("Please pick a letter from A to Z");
         }
+        console.log(spacesArray);
+        console.log(nameArray);
     }
 }
 function evaluateScore() {
     if (spacesArray.includes("_")) {
+        console.log("not done yet");
+        // return
         if (userTries == 15) {
+            console.log("ran out of tries");
             document.getElementById("remaining").innerHTML = "You have run out of tries. Game Over";
             document.onkeydown = null
             userLoss = userLoss + 1;
+            console.log(userLoss);
             document.getElementById("gamesLost").innerHTML = userLoss;
             $("#new-game-btn").show();
             $("#gameBoard").empty();
             for (p = 0; p < nameArray.length; p++) {
                 $("#gameBoard").append(nameArray[p].toUpperCase());
+                // document.getElementById("gameBoard").innerText = nameArray[p].toUpperCase();
             }
         }
     } else {
+        console.log("winner, winner, chicken dinner")
         document.onkeydown = null
         document.getElementById("remaining").innerHTML = "You win! Game Over.";
         userWins = userWins + 1;
+        console.log(userWins);
         document.getElementById("gamesWon").innerHTML = userWins;
         $("#new-game-btn").show();
     }

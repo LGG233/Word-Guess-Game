@@ -63,10 +63,10 @@
     font-size: 48px;
 }
 
-#buttons {
-    margin-top: 250px;
-    padding-left: 300px;
+#new-game-btn {
+    display: none;
     float: center;
+    margin-bottom: 25ps;
 }
 
 #bad-letters {
