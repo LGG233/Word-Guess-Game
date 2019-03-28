@@ -10,7 +10,9 @@ var usedLetters = []; // Array to capture incorrect letters played by player
 var userWins = 0; // Tracks number of player wins
 var userLoss = 0; // Tracks number of player losses
 var userChoice = ""; // placeholder variable for guessed letter
-var letterPicked = "false"; // "false" prevents name from being put into used letter pile
+var letterPicked = "false"; // prevents letter from being put into used letter pile twice and being charged twice to player
+var correctLetter = "false"
+var addGuess = "true"; // variable used for scoring; if true, guess gets added to the number of guesses used in the game
 document.getElementById("gamesWon").innerHTML = "0";
 document.getElementById("gamesLost").innerHTML = "0";
 
@@ -37,11 +39,12 @@ function gameSetup() {
 
 function resetGame() {
     $(".button").on("click", function () {
-        userTries = 0; 
-        randomName = ""; 
-        nameArray = []; 
+        userTries = 0;
+        randomName = "";
+        nameArray = [];
         spacesArray = [];
-        usedLetters = []; 
+        usedLetters = [];
+        letterPicked = "false";
         document.getElementById("gameBoard").innerText = "";
         document.getElementById("used-letters").innerText = "";
         $("#new-game-btn").hide();
@@ -51,20 +54,17 @@ function resetGame() {
 
 function chooseLetter() {
     document.onkeydown = function (event) {
-        $("#user-tries").text("You have used " + userTries + " of 15 attempts");
+        $("#user-tries").text("You have used " + userTries + " of 15 guesses");
         if (event.keyCode >= 65 && event.keyCode <= 90) {
-            letterPicked = "false";
             userChoice = event.key;
             userChoice = userChoice.toUpperCase();
-            userTries = userTries + 1;
-            document.getElementById("remaining").innerHTML = "You have used " + userTries + " of 15 tries.";
             for (var i = 0; i < usedLetters.length; i++) {
                 if (userChoice === usedLetters[i]) {
-                    letterPicked = "true";
-                    alert("You've already picked that letter. Try again.")
+                    return alert("You've already picked that letter. Try again.")
                 }
             }
             usedLetters.push(userChoice);
+            userTries = userTries + 1;
             if (randomName.includes(userChoice)) {
                 for (m = 0; m < randomName.length; m++) {
                     if (userChoice === nameArray[m]) {
@@ -74,11 +74,11 @@ function chooseLetter() {
                         spacesArray.forEach(y => document.getElementById("gameBoard").append(y));
                     }
                 }
-            } else {
-                if (letterPicked === "false") {
-                    document.getElementById("used-letters").append(userChoice.toUpperCase() + " ");
-                }
             }
+            else {
+                document.getElementById("used-letters").append(userChoice.toUpperCase() + " ");
+            }
+            document.getElementById("remaining").innerHTML = "You have used " + userTries + " of 15 guesses.";
             evaluateScore();
         } else {
             alert("Please pick a letter from A to Z");
